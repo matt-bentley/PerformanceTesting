@@ -1,6 +1,6 @@
 # Performance Testing
 
-This repository provides an example of how to Load test an API using k6, Grafana and WireMock.
+This repository provides an example of how to Load test an API using **k6**, **Grafana** and **WireMock**.
 
 An example Weather API is used which makes requests to Open-Meteo, an Open Source Weather service. WireMock is used to mock Open-Meteo so that consistent Load metrics can be achieved when testing.
 
@@ -11,7 +11,7 @@ The example Weather API can be run using Docker. The test scripts and load test 
 - **API** - ASP.NET Weather API. Can be accessed using http://localhost:5294/swagger/index.html
 - **Database** - MongoDB database used to store weather forecast requests
 - **k6** - Go based performance and automation testing framework
-- **WireMock"" - Used to mock Open-Meteo responses when load testing
+- **WireMock** - Used to mock Open-Meteo responses when load testing
 - **InfuxDB** - Time series database used to store load test metrics
 - **Grafana** - Used for dashboard view of load test metrics
 
@@ -45,7 +45,7 @@ The steps for installing k6 can be found here: https://k6.io/docs/get-started/in
 k6 run --out influxdb=http://localhost:8086/k6 -e MAX_VUS=1500 -e API_DOMAIN=http://localhost:5294 ./load/scripts/test.js
 ```
 
-MAX_VUS can be changed to alter the number of concurrent users used for the load test.
+**MAX_VUS** can be changed to alter the number of concurrent users used for the load test.
 
 ![K6 Cmd](images/k6-cmd.png)
 
@@ -56,10 +56,13 @@ The test is designed to run over 3 stages:
 - **Main** - Run consistent load using the max concurrent users
 - **Ramp-Down** - Ramp down the concurrent users gradually to zero
 
+The load test involves creating a weather forecast and retrieving it using its unique ID. These steps are performed by k6 in a continuous loop and run across lots of threads based on how many concurrent users are specified.
+Short sleep intervals are also included to simulate a user accessing the application and waiting between actions.
+
 ## Viewing Load Test Results
 
 The output from the Load test can be viewed using Grafana:
 
-(http://localhost:3000)
+http://localhost:3000
 
 ![Grafana Results](images/grafana-results.png)
