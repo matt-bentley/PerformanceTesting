@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33627.172
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PerformanceTesting.Api", "src\PerformanceTesting.Api\PerformanceTesting.Api.csproj", "{37EE024D-8FB3-478D-9898-C6A49B262537}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{90523849-0A00-444D-BC6D-A8BF11B839B6}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "load", "load\load.shproj", "{87293FB5-906B-4D3E-BF6F-2EE0B85AE7E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_SolutionItems", "_SolutionItems", "{3111C50B-82FC-41AD-B00D-E5A83B74C738}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37EE024D-8FB3-478D-9898-C6A49B262537}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37EE024D-8FB3-478D-9898-C6A49B262537}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37EE024D-8FB3-478D-9898-C6A49B262537}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37EE024D-8FB3-478D-9898-C6A49B262537}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90523849-0A00-444D-BC6D-A8BF11B839B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90523849-0A00-444D-BC6D-A8BF11B839B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90523849-0A00-444D-BC6D-A8BF11B839B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90523849-0A00-444D-BC6D-A8BF11B839B6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {56E6EBF7-1106-4EC6-B0AC-C831B29FBA2C}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		load\load.projitems*{87293fb5-906b-4d3e-bf6f-2ee0b85ae7e8}*SharedItemsImports = 13
+	EndGlobalSection
+EndGlobal

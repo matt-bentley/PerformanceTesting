@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>87293fb5-906b-4d3e-bf6f-2ee0b85ae7e8</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>load</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)grafana\dashboards\k6-dashboard.json" />
+    <None Include="$(MSBuildThisFileDirectory)grafana\dashboards\dashboard.yml" />
+    <None Include="$(MSBuildThisFileDirectory)grafana\datasources\datasource.yml" />
+    <None Include="$(MSBuildThisFileDirectory)k6\Dockerfile" />
+    <None Include="$(MSBuildThisFileDirectory)scripts\test.js" />
+    <None Include="$(MSBuildThisFileDirectory)wiremock\mappings\open-meteo\forecast.json" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,61 @@
+﻿version: "3.4"
+services:
+
+  api:
+    build:
+      context: .
+      dockerfile: src/PerformanceTesting.Api/Dockerfile
+    image: performance-testing/api:latest
+    profiles: ["local"]
+    ports:
+      - 5294:8080
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Load
+
+  mongodb:
+    image: mongo:latest
+    profiles: ["dev", "local"]
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+
+  k6:
+    build:
+      context: .
+      dockerfile: load/k6/Dockerfile
+    environment:
+      - K6_OUT=influxdb=http://influxdb:8086/k6
+      - MAX_VUS=20
+      - API_DOMAIN=localhost:5294
+    image: performance-testing/k6:latest
+    profiles: ["load"]
+
+  wiremock:
+    ports:
+      - 8080:8080
+    image: wiremock/wiremock:latest
+    profiles: ["load", "load-local"]
+    volumes:
+      - ./load/wiremock/:/home/wiremock
+
+  influxdb:
+    image: influxdb:1.8
+    ports:
+      - "8086:8086"
+    environment:
+      - INFLUXDB_DB=k6
+    profiles: ["load-local"]
+
+  grafana:
+    image: grafana/grafana-enterprise:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_BASIC_ENABLED=false
+    profiles: ["load-local"]
+    volumes:
+      - ./load/grafana:/etc/grafana/provisioning/
